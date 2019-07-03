@@ -1,0 +1,23 @@
+service: serverless-demo 
+
+provider:
+  name: aws
+  runtime: dotnetcore2.1
+  stage: ${opt:stage, 'dev'}
+  region: eu-west-1
+  profile: default
+
+package:
+  artifact: bin/release/netcoreapp2.1/hello.zip
+
+functions:
+  hello:
+    handler: CsharpHandlers::AwsDotnetCsharp.Handler::Hello
+    events:
+      - http:
+          path: hello
+          method: post
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  prefix: ${self:custom.stage}-${self:service}
