@@ -21,5 +21,17 @@ namespace AwsDotnetCsharp
 
       return response;
     }
+
+    public APIGatewayProxyResponse Goodbye(APIGatewayProxyRequest request)
+    {
+      var response = new APIGatewayProxyResponse
+      {
+        StatusCode = (int)HttpStatusCode.OK,
+        Body = JsonConvert.SerializeObject("This is... GOODBYE!"),
+        Headers = new Dictionary<string, string> { { "Content-Type", "application/json" } }
+      };
+
+      return response;
+    }
   }
 }

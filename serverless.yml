@@ -17,6 +17,12 @@ functions:
       - http:
           path: hello
           method: post
+  goodbye:
+    handler: CsharpHandlers::AwsDotnetCsharp.Handler::Goodbye
+    events:
+      - http:
+          path: goodbye
+          method: get
 
 custom:
   stage: ${opt:stage, self:provider.stage}
